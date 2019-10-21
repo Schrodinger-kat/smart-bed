@@ -46,10 +46,10 @@ def alert(ev=None):
         m.ChangeDutyCycle(dc2)
         n.ChangeDutyCycle(dc2)
 
-print("init everstone")
-m.stop
-n.stop
-sleep(2)
+    print("init everstone")
+    m.stop
+    n.stop
+    sleep(2)
 
 def mewtwo():
     GPIO.cleanup()
