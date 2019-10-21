@@ -39,9 +39,6 @@ def alert(ev=None):
 
 def electivire():
     print("init electivire",counter)
-    m = GPIO.PWM(SmPin,freq)
-    n = GPIO.PWM(SmPin,freq)
-
     if counter%2 != 0:
         print("init motordrive at ",dc1,"capacity")
         sleep(1)
@@ -53,21 +50,20 @@ def electivire():
         m.ChangeDutyCycle(dc2)
         n.ChangeDutyCycle(dc2)
 
-def everstone():
-    print("init everstone")
-    m = GPIO.PWM(SmPin,freq)
-    n = GPIO.PWM(SmPin,freq)
-    m.stop
-    n.stop
-    sleep(2)
+print("init everstone")
+m = GPIO.PWM(SmPin,freq)
+n = GPIO.PWM(SmPin,freq)
+m.stop
+n.stop
+sleep(2)
 
 def mewtwo():
     GPIO.cleanup()
 
 def loop():
-    mew()
-    GPIO.add_event_detect(tiltPin, GPIO.FALLING, callback=alert, bouncetime=100)
-    everstone()
+    while True:
+        mew()
+        GPIO.add_event_detect(tiltPin, GPIO.FALLING, callback=alert, bouncetime=100)
 
 if __name__=='__main__':
     try:
