@@ -30,7 +30,6 @@ print("init mew suceeded")
 
 def alert(ev=None):
     print("Tilt Detected :)")
-    mew()
     sig = True
     global counter
     counter = counter + 1
