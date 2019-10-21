@@ -22,12 +22,11 @@ GPIO.setup(SmPin,GPIO.OUT)
 GPIO.setup(SnPin,GPIO.OUT)
 GPIO.setup(tiltPin,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-def mew():
-    m = GPIO.PWM(SmPin,freq)
-    n = GPIO.PWM(SmPin,freq)
-    m.start(2.5)
-    n.start(2.5)
-    print("init mew suceeded")
+m = GPIO.PWM(SmPin,freq)
+n = GPIO.PWM(SmPin,freq)
+m.start(2.5)
+n.start(2.5)
+print("init mew suceeded")
 
 def alert(ev=None):
     print("Tilt Detected :)")
@@ -35,9 +34,6 @@ def alert(ev=None):
     sig = True
     global counter
     counter = counter + 1
-    electivire()
-
-def electivire():
     print("init electivire",counter)
     if counter%2 != 0:
         print("init motordrive at ",dc1,"capacity")
@@ -51,8 +47,6 @@ def electivire():
         n.ChangeDutyCycle(dc2)
 
 print("init everstone")
-m = GPIO.PWM(SmPin,freq)
-n = GPIO.PWM(SmPin,freq)
 m.stop
 n.stop
 sleep(2)
@@ -62,7 +56,6 @@ def mewtwo():
 
 def loop():
     while True:
-        mew()
         GPIO.add_event_detect(tiltPin, GPIO.FALLING, callback=alert, bouncetime=100)
 
 if __name__=='__main__':
