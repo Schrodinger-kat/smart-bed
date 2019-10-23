@@ -10,8 +10,8 @@ counter = 0
 flag = 0
 
 freq = 50
-angle1 = 45
-angle2 = 145
+angle1 = 90
+angle2 = 0
 dc1 = float(angle1)/10 + 2.5
 dc2 = float(angle2)/10 + 2.5
 
@@ -24,8 +24,8 @@ GPIO.setup(tiltPin,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 m = GPIO.PWM(SmPin,freq)
 n = GPIO.PWM(SmPin,freq)
-m.start(2.5)
-n.start(2.5)
+m.start(0)
+n.start(0)
 print("init mew suceeded")
 
 def alert(ev=None):
@@ -34,16 +34,16 @@ def alert(ev=None):
     global counter
     counter = counter + 1
     print("init electivire",counter)
-    if counter%2 != 0:
+    if counter % 2 == 0:
         print("init motordrive at ",dc1,"capacity")
-        sleep(1)
         m.ChangeDutyCycle(dc1)
         n.ChangeDutyCycle(dc1)
+        sleep(1)
     else:
         print("init motordrive at ",dc2," capacity")
-        sleep(1)
         m.ChangeDutyCycle(dc2)
         n.ChangeDutyCycle(dc2)
+        sleep(1)
 
     print("init everstone")
     m.stop
